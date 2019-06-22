@@ -15,9 +15,10 @@ from myDataloader import get_data_info , ImageSeqDataset
 from myModel import get_mse_weighted_loss , DeepVo
 
 class Config(object):
-    num_workers = 4
+    
+    num_workers = 8
     epochs      = 250
-    batch_size  = 4
+    batch_size  = 8
     lr = 0.0005
 
     train_video = ['00', '01', '02', '05', '08', '09']
