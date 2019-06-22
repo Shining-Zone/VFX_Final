@@ -55,10 +55,14 @@ def get_data_info(img_root,gt_root,video_list,cut_size,overlap,test=False):
         #print(kind , v_img_paths.shape , v_gt_poses.shape)
     #print(len(n_cut_img_paths) , len(n_cut_gt_poses)  , n_cut_length_labels)
 
-    return n_cut_img_paths , n_cut_gt_poses  , n_cut_length_labels
+    return (n_cut_img_paths , n_cut_gt_poses  , n_cut_length_labels)
 
 class ImageSeqDataset(Dataset):
-    def __init__(self,n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transforms1=None,transforms2=None,minus_point_5=False):
+    def __init__(self,data_info,transforms1=None,transforms2=None,minus_point_5=False):
+
+        n_cut_img_paths     = data_info[0]
+        n_cut_gt_poses      = data_info[1]
+        n_cut_length_labels = data_info[2]
 
         self.image_arr      = np.asarray(n_cut_img_paths)
         self.groundtruth_arr= np.asarray(n_cut_gt_poses)
@@ -130,9 +134,9 @@ if __name__ == '__main__':
     transform1 = tv.transforms.Compose([tv.transforms.Resize(img_new_size),tv.transforms.ToTensor()])
     transform2 =  tv.transforms.Compose([tv.transforms.Normalize(mean=img_mean , std=img_std)])
 
-    n_cut_img_paths , n_cut_gt_poses  , n_cut_length_labels = get_data_info(img_root,gt_root,train_video,cut_size,overlap,test=False)
+    data_info = get_data_info(img_root,gt_root,train_video,cut_size,overlap,test=False)
 
-    dataset = ImageSeqDataset(n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transform1,transform2,minus_point_5=minus_point_5)
+    dataset = ImageSeqDataset(data_info,transform1,transform2,minus_point_5=minus_point_5)
     dataloader = DataLoader(dataset,batch_size=4,shuffle=False,num_workers=0,drop_last=False)
 
     for batch in dataloader:

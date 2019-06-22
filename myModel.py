@@ -11,9 +11,9 @@ def conv(in_planes,out_planes,kernel_size,stride,padding,dropout):
         nn.Dropout(dropout)
     )
 
-class myDeepVo(nn.Module):
+class DeepVo(nn.Module):
     def __init__(self,img_w,img_h,frame=7,hidden_size=1000,n_layers=2):
-        super(myDeepVo,self).__init__()
+        super(DeepVo,self).__init__()
 
         self.conv1   = conv(in_planes=  6,out_planes=  64,kernel_size=(7,7),stride=2,padding=3,dropout=0.2)
         self.conv2   = conv(in_planes= 64,out_planes= 128,kernel_size=(5,5),stride=2,padding=2,dropout=0.2)
@@ -102,8 +102,6 @@ def get_mse_weighted_loss(predict,y,k=100):
 
 def test():
 
-    torch.manual_seed(1214)
-
     batch_size = 4
     img_w = 200
     img_h = 300
@@ -114,12 +112,13 @@ def test():
     y = torch.randn(batch_size,frame,6) # pose 是 6 維度
     print(x.shape,y.shape)
 
-    MyDeep = myDeepVo(img_w,img_h,frame=frame,hidden_size=1000,n_layers=2)
+    MyDeep = DeepVo(img_w,img_h,frame=frame,hidden_size=1000,n_layers=2)
     #print(MyDeep)
     
     optimizer = torch.optim.Adam(MyDeep.parameters(), lr=0.001, betas=(0.9, 0.999))
+    
+    MyDeep.train()
     for i in range(3):
-        MyDeep.train()
         
         optimizer.zero_grad()
 
