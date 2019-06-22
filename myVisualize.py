@@ -1,9 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import time
-from params import par
 
-pose_GT_dir = par.pose_dir  #'KITTI/pose_GT/'
+pose_GT_dir = './KITTI/pose_GT/'
 predicted_result_dir = './result/'
 gradient_color = True
 
