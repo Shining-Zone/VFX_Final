@@ -100,6 +100,17 @@ def get_mse_weighted_loss(predict,y,k=100):
     loss = (k * angle_loss + translation_loss)  # k = 100是paper所說的
     return loss
 
+def load_pretrain_weight(model,pretrain_model_name):
+    
+    map_location = lambda storage, loc: storage
+    print('===========loading Pretrain Flownet Model :', pretrain_model_name ,'===========')
+    pretrained_model = torch.load(pretrain_model_name, map_location=map_location)
+    
+    model_dict = model.state_dict()
+    update_dict = {k: v for k, v in pretrained_model['state_dict'].items() if k in model_dict}
+    model_dict.update(update_dict)
+    model.load_state_dict(model_dict)
+
 def test():
 
     batch_size = 4
@@ -112,7 +123,12 @@ def test():
     y = torch.randn(batch_size,frame,6).to(device) # pose 是 6 維度
     print(x.shape,y.shape)
 
+    pretrain_model_name = 'flownets_bn_EPE2.459.pth.tar'  # 'flownets_EPE1.951.pth.tar'
+
     MyDeep = DeepVo(img_w,img_h,frame=frame,hidden_size=1000,n_layers=2).to(device)
+    print('Before loading pretrain model',MyDeep.conv1[0].weight[0][0])
+    load_pretrain_weight(MyDeep,pretrain_model_name)
+    print('After loading pretrain model',MyDeep.conv1[0].weight[0][0])
     #print(MyDeep)
     
     optimizer = torch.optim.Adam(MyDeep.parameters(), lr=0.001, betas=(0.9, 0.999))

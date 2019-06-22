@@ -12,10 +12,10 @@ from torch.utils.data import Dataset, DataLoader
 import matplotlib.pyplot as plt
 
 from myDataloader import get_data_info , ImageSeqDataset
-from myModel import get_mse_weighted_loss , DeepVo
+from myModel import get_mse_weighted_loss , DeepVo ,load_pretrain_weight
 
 class Config(object):
-    
+
     num_workers = 8
     epochs      = 250
     batch_size  = 8
@@ -38,12 +38,17 @@ class Config(object):
 
     model_dir  = 'model_para'
 
+    pretrain_model_name = 'flownets_bn_EPE2.459.pth.tar'  # 'flownets_EPE1.951.pth.tar'
+
+    save_interval = 1
+
 def test(opts):
     
     #############################################################################################################################################
     
     # model 創建
     model = DeepVo(opts.img_new_size[0],opts.img_new_size[1],frame=opts.cut_size,hidden_size=1000)
+    load_pretrain_weight(model,opts.pretrain_model_name)
     model = model.to(device)
     
     #############################################################################################################################################
@@ -100,6 +105,10 @@ def test(opts):
 
                 val_loss += loss.item()
         print('Valid Epoch : {}\t Average_Loss:  {:.6f}'.format(ep,val_loss/len(valid_dataloader)))    
+
+        if (ep+1) % opts.save_interval == 0:
+            print('=========save the model at Epoch : ' + str(ep) + ' =========')
+            torch.save(model.state_dict(), os.path.join(opts.model_dir,'DeepVo_Epoch_{}.pth'.format(ep)))
     #############################################################################################################################################   
     #紀錄檔案  
         f.write('='*50+'\n')
@@ -107,6 +116,8 @@ def test(opts):
     f.write('='*50+'\n')
     f.close()
     #############################################################################################################################################
+    print('=========save the model at last Epoch   =========')
+    torch.save(model.state_dict(), os.path.join(opts.model_dir,'DeepVo_Epoch_Last.pth'))
 
 if __name__ == '__main__':
 
