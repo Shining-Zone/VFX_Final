@@ -125,13 +125,14 @@ if __name__ == '__main__':
     img_new_size = (150, 600)
     img_std=(1,1,1)
     img_mean = (-0.14968217427134656, -0.12941663107068363, -0.1320610301921484)
+    minus_point_5 = True
     #tv.transforms.CenterCrop(img_new_size) 可以代替 Resize
     transform1 = tv.transforms.Compose([tv.transforms.Resize(img_new_size),tv.transforms.ToTensor()])
     transform2 =  tv.transforms.Compose([tv.transforms.Normalize(mean=img_mean , std=img_std)])
 
     n_cut_img_paths , n_cut_gt_poses  , n_cut_length_labels = get_data_info(img_root,gt_root,train_video,cut_size,overlap,test=False)
 
-    dataset = ImageSeqDataset(n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transform1,transform2)
+    dataset = ImageSeqDataset(n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transform1,transform2,minus_point_5=minus_point_5)
     dataloader = DataLoader(dataset,batch_size=4,shuffle=False,num_workers=0,drop_last=False)
 
     for batch in dataloader:
