@@ -31,14 +31,41 @@ def cut_data(v_img_paths,v_gt_poses,slice_num,cut_size,overlap,test=False):
 
     return cut_img_paths , cut_gt_poses , cut_length_labels
 
+def get_data_info(img_root,gt_root,video_list,cut_size,overlap,test=False):
+
+    n_img_paths = [np.array(sorted(glob.glob('{}/*.png'.format(os.path.join(img_root,img_kind))))) for img_kind in video_list ] 
+    n_gt_poses  = [np.load('{}.npy'.format(os.path.join(gt_root,gt_kind))) for gt_kind in video_list ]
+
+    n_cut_img_paths     = []
+    n_cut_gt_poses      = []
+    n_cut_length_labels = []
+    assert(len(n_img_paths)==len(n_gt_poses)) #確定 poses類別數目與照片類別數目一致
+    for kind , (v_img_paths , v_gt_poses) in enumerate(zip(n_img_paths,n_gt_poses)):
+        ##################################################################################
+        if kind ==1:
+            break
+        ##################################################################################
+        slice_num = math.ceil(v_img_paths.shape[0]/cut_size)
+        cut_img_paths , cut_gt_poses , cut_length_labels = cut_data(v_img_paths,v_gt_poses,slice_num,cut_size,overlap,test=test)
+        
+        n_cut_img_paths     +=     cut_img_paths
+        n_cut_gt_poses      +=      cut_gt_poses
+        n_cut_length_labels += cut_length_labels
+
+        #print(kind , v_img_paths.shape , v_gt_poses.shape)
+    #print(len(n_cut_img_paths) , len(n_cut_gt_poses)  , n_cut_length_labels)
+
+    return n_cut_img_paths , n_cut_gt_poses  , n_cut_length_labels
+
 class ImageSeqDataset(Dataset):
-    def __init__(self,n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transforms1=None,transforms2=None):
+    def __init__(self,n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transforms1=None,transforms2=None,minus_point_5=False):
 
         self.image_arr      = np.asarray(n_cut_img_paths)
         self.groundtruth_arr= np.asarray(n_cut_gt_poses)
         self.seq_len_list   = n_cut_length_labels
         self.transforms1     = transforms1
         self.transforms2     = transforms2
+        self.minus_point_5 = minus_point_5
 
     def __getitem__(self, index):
         raw_groundtruth = np.hsplit(self.groundtruth_arr[index], np.array([6]))	
@@ -73,9 +100,8 @@ class ImageSeqDataset(Dataset):
         for img_path in image_path_sequence:
             img_as_img = Image.open(img_path)
             img_as_tensor = self.transforms1(img_as_img)
-            
-            img_as_tensor = img_as_tensor - 0.5  # from [0, 1] -> [-0.5, 0.5]
-            
+            if self.minus_point_5:
+                img_as_tensor = img_as_tensor - 0.5  # from [0, 1] -> [-0.5, 0.5]
             img_as_tensor = self.transforms2(img_as_tensor)
             img_as_tensor = img_as_tensor.unsqueeze(dim=0)
             image_sequence.append(img_as_tensor)
@@ -92,43 +118,20 @@ if __name__ == '__main__':
     valid_video = ['04', '06', '07', '10']
     img_root = '../KITTI/images'
     gt_root  = '../KITTI/pose_GT' 
-    cut_size = 10
+
+    cut_size = 7
     overlap  = 1
-    new_size = (150, 600)
+    assert(cut_size>overlap)
+    img_new_size = (150, 600)
     img_std=(1,1,1)
     img_mean = (-0.14968217427134656, -0.12941663107068363, -0.1320610301921484)
-
-    assert(cut_size>overlap)
-
-    n_img_paths = [np.array(sorted(glob.glob('{}/*.png'.format(os.path.join(img_root,img_kind))))) for img_kind in train_video ] 
-    n_gt_poses  = [np.load('{}.npy'.format(os.path.join(gt_root,gt_kind))) for gt_kind in train_video ]
-
-    n_cut_img_paths     = []
-    n_cut_gt_poses      = []
-    n_cut_length_labels = []
-    assert(len(n_img_paths)==len(n_gt_poses)) #確定 poses類別數目與照片類別數目一致
-    for kind , (v_img_paths , v_gt_poses) in enumerate(zip(n_img_paths,n_gt_poses)):
-        ##################################################################################
-        if kind ==1:
-            break
-        ##################################################################################
-        slice_num = math.ceil(v_img_paths.shape[0]/cut_size)
-        cut_img_paths , cut_gt_poses , cut_length_labels = cut_data(v_img_paths,v_gt_poses,slice_num,cut_size,overlap,test=False)
-        
-        n_cut_img_paths     +=     cut_img_paths
-        n_cut_gt_poses      +=      cut_gt_poses
-        n_cut_length_labels += cut_length_labels
-
-        print(kind , v_img_paths.shape , v_gt_poses.shape)
-    print(len(n_cut_img_paths) , len(n_cut_gt_poses)  , n_cut_length_labels)
-
-    #tv.transforms.CenterCrop(new_size) 可以代替 Resize
-    transform1 = tv.transforms.Compose([tv.transforms.Resize(new_size),tv.transforms.ToTensor()])
-
+    #tv.transforms.CenterCrop(img_new_size) 可以代替 Resize
+    transform1 = tv.transforms.Compose([tv.transforms.Resize(img_new_size),tv.transforms.ToTensor()])
     transform2 =  tv.transforms.Compose([tv.transforms.Normalize(mean=img_mean , std=img_std)])
 
-    dataset = ImageSeqDataset(n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transform1,transform2)
+    n_cut_img_paths , n_cut_gt_poses  , n_cut_length_labels = get_data_info(img_root,gt_root,train_video,cut_size,overlap,test=False)
 
+    dataset = ImageSeqDataset(n_cut_img_paths,n_cut_gt_poses,n_cut_length_labels,transform1,transform2)
     dataloader = DataLoader(dataset,batch_size=4,shuffle=False,num_workers=0,drop_last=False)
 
     for batch in dataloader:
