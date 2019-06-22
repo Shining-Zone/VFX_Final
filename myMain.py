@@ -17,18 +17,18 @@ from myModel import get_mse_weighted_loss , DeepVo
 class Config(object):
     num_workers = 4
     epochs      = 250
-    batch_size  = 8
+    batch_size  = 4
     lr = 0.0005
 
     train_video = ['00', '01', '02', '05', '08', '09']
     valid_video = ['04', '06', '07', '10']
-    img_root = '../KITTI/images'
-    gt_root  = '../KITTI/pose_GT' 
+    img_root = './KITTI/images'
+    gt_root  = './KITTI/pose_GT' 
 
     cut_size = 7 #不要亂動 7就7
     overlap  = 1
     assert(cut_size>overlap)
-    img_new_size = (608, 184)
+    img_new_size = (304, 92)
     img_std  =  (0.2610784009469139, 0.25729316928935814, 0.25163823815039915)
     img_mean = (0.19007764876619865, 0.15170388157131237, 0.10659445665650864)
     minus_point_5 = True
@@ -42,7 +42,7 @@ def test(opts):
     #############################################################################################################################################
     
     # model 創建
-    model = DeepVo(opts.img_new_size(0),opts.img_new_size(1),frame=opts.cut_size,hidden_size=1000)
+    model = DeepVo(opts.img_new_size[0],opts.img_new_size[1],frame=opts.cut_size,hidden_size=1000)
     model = model.to(device)
     
     #############################################################################################################################################

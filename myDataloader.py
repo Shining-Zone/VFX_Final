@@ -42,8 +42,8 @@ def get_data_info(img_root,gt_root,video_list,cut_size,overlap,test=False):
     assert(len(n_img_paths)==len(n_gt_poses)) #確定 poses類別數目與照片類別數目一致
     for kind , (v_img_paths , v_gt_poses) in enumerate(zip(n_img_paths,n_gt_poses)):
         ##################################################################################
-        if kind ==1:
-            break
+        # if kind ==1:
+        #     break
         ##################################################################################
         slice_num = math.ceil(v_img_paths.shape[0]/cut_size)
         cut_img_paths , cut_gt_poses , cut_length_labels = cut_data(v_img_paths,v_gt_poses,slice_num,cut_size,overlap,test=test)

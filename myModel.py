@@ -30,7 +30,7 @@ class DeepVo(nn.Module):
         tmp = torch.zeros(1, frame-1, img_w, img_h)
         tmp = self.encode_image(tmp)
 
-        self.lstm    = nn.LSTM(input_size=np.prod(tmp.shape),hidden_size=hidden_size,
+        self.lstm    = nn.LSTM(input_size=int(np.prod(tmp.shape)),hidden_size=hidden_size,
                                 num_layers=n_layers,batch_first=True,dropout=(0 if n_layers == 1 else 0.5),bidirectional=False)
 
         self.classifier = nn.Sequential(nn.Linear(in_features=hidden_size,out_features=6))
@@ -96,7 +96,7 @@ def get_mse_weighted_loss(predict,y,k=100):
     #有加權過的權重loss計算
     angle_loss       = torch.nn.functional.mse_loss(predict[:,:,:3], y[:,:,:3])
     translation_loss = torch.nn.functional.mse_loss(predict[:,:,3:], y[:,:,3:])
-    print(angle_loss , translation_loss)
+    #print(angle_loss , translation_loss)
     loss = (k * angle_loss + translation_loss)  # k = 100是paper所說的
     return loss
 
@@ -108,11 +108,11 @@ def test():
     frame = 7
 
     # batch * frame * RGB * img_w , img_h
-    x = torch.randn(batch_size,frame,3,img_w,img_h)
-    y = torch.randn(batch_size,frame,6) # pose 是 6 維度
+    x = torch.randn(batch_size,frame,3,img_w,img_h).to(device)
+    y = torch.randn(batch_size,frame,6).to(device) # pose 是 6 維度
     print(x.shape,y.shape)
 
-    MyDeep = DeepVo(img_w,img_h,frame=frame,hidden_size=1000,n_layers=2)
+    MyDeep = DeepVo(img_w,img_h,frame=frame,hidden_size=1000,n_layers=2).to(device)
     #print(MyDeep)
     
     optimizer = torch.optim.Adam(MyDeep.parameters(), lr=0.001, betas=(0.9, 0.999))
@@ -139,5 +139,10 @@ def test():
     print(predict.shape , loss) #print(predict)
 
 if __name__ == '__main__':
+    use_cuda = torch.cuda.is_available()
+    torch.manual_seed(1214)
+    np.random.seed(1214)
+    device = torch.device("cuda" if use_cuda else "cpu")
+    print('===========Device used :', device,'===========')
     test()
     
