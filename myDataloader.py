@@ -120,8 +120,8 @@ if __name__ == '__main__':
 
     train_video = ['00', '01', '02', '05', '08', '09']
     valid_video = ['04', '06', '07', '10']
-    img_root = '../KITTI/images'
-    gt_root  = '../KITTI/pose_GT' 
+    img_root = './KITTI/images'
+    gt_root  = './KITTI/pose_GT' 
 
     cut_size = 7
     overlap  = 1
