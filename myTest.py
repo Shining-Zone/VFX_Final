@@ -149,8 +149,7 @@ class Config(object):
     num_workers = 4
     batch_size  = 8
 
-    #test_video = ['04', '05', '07', '10', '09'] # ['00', '01', '02']
-    test_video = ['room']
+    test_video = ['04', '05', '07', '10', '09'] # ['00', '01', '02']
     img_root = '../DeepVO-pytorch/KITTI/images'
     gt_root  = '../DeepVO-pytorch/KITTI/pose_GT'
 

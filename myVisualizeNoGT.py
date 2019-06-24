@@ -18,7 +18,7 @@ def plot_route(out, c_out='r'):
 # Load in GT and predicted pose
 # video_list = ['00', '02', '08', '09']
 # video_list += ['01', '04', '05', '06', '07', '10']
-video_list = ['ntu', 'room'] # ['00', '01', '02']
+video_list = ['campus1','campus2','ntu', 'room'] # ['00', '01', '02']
 
 
 for video in video_list:

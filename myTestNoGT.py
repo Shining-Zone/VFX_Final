@@ -150,7 +150,7 @@ class Config(object):
     batch_size  = 8
 
     #test_video = ['04', '05', '07', '10', '09'] # ['00', '01', '02']
-    test_video = ['room','ntu']
+    test_video = ['campus1','campus2','room','ntu']
     img_root = '../DeepVO-pytorch/KITTI/images'
     gt_root = '../DeepVO-pytorch/KITTI/pose_GT'
 
