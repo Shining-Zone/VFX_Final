@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 
-pose_GT_dir = './KITTI/pose_GT/'
+pose_GT_dir = '../DeepVO-pytorch/KITTI/pose_GT/'
 predicted_result_dir = './result/'
 gradient_color = True
 
@@ -44,7 +44,7 @@ for video in video_list:
 		print('mse_rotate: ', mse_rotate)
 		print('mse_translate: ', mse_translate)
 
-	
+
 	if gradient_color:
 		# plot gradient color
 		step = 200

@@ -29,21 +29,21 @@ class ImageSequenceDataset(Dataset):
         self.transformer = tv.transforms.Compose(transform_ops)
         self.minus_point_5 = minus_point_5
         self.normalizer = tv.transforms.Normalize(mean=img_mean, std=img_std)
-        
+
         self.data_info = info_dataframe
         self.seq_len_list = list(self.data_info.seq_len)
         self.image_arr = np.asarray(self.data_info.image_path)  # image paths
         self.groundtruth_arr = np.asarray(self.data_info.pose)
 
     def __getitem__(self, index):
-        raw_groundtruth = np.hsplit(self.groundtruth_arr[index], np.array([6]))	
+        raw_groundtruth = np.hsplit(self.groundtruth_arr[index], np.array([6]))
         groundtruth_sequence = raw_groundtruth[0]
         groundtruth_rotation = raw_groundtruth[1][0].reshape((3, 3)).T # opposite rotation of the first frame
         groundtruth_sequence = torch.FloatTensor(groundtruth_sequence)
-        # groundtruth_sequence[1:] = groundtruth_sequence[1:] - groundtruth_sequence[0:-1]  # get relative pose w.r.t. previois frame 
+        # groundtruth_sequence[1:] = groundtruth_sequence[1:] - groundtruth_sequence[0:-1]  # get relative pose w.r.t. previois frame
 
-        groundtruth_sequence[1:] = groundtruth_sequence[1:] - groundtruth_sequence[0] # get relative pose w.r.t. the first frame in the sequence 
-		
+        groundtruth_sequence[1:] = groundtruth_sequence[1:] - groundtruth_sequence[0] # get relative pose w.r.t. the first frame in the sequence
+
         # print('Item before transform: ' + str(index) + '   ' + str(groundtruth_sequence))
 
         # here we rotate the sequence relative to the first frame
@@ -58,12 +58,12 @@ class ImageSequenceDataset(Dataset):
 		# here we consider cases when rotation angles over Y axis go through PI -PI discontinuity
         for gt_seq in groundtruth_sequence[1:]:
             gt_seq[0] = normalize_angle_delta(gt_seq[0])
-			
+
         # print('Item after transform: ' + str(index) + '   ' + str(groundtruth_sequence))
 
         image_path_sequence = self.image_arr[index]
         sequence_len = torch.tensor(self.seq_len_list[index])  #sequence_len = torch.tensor(len(image_path_sequence))
-        
+
         image_sequence = []
         for img_path in image_path_sequence:
             img_as_img = Image.open(img_path)
@@ -118,7 +118,7 @@ def get_data_info(img_root,pose_root,folder_list, seq_len_range, overlap, sample
                 while True:
                     n = np.random.random_integers(min_len, max_len)
                     if start + n < n_frames:
-                        x_seg = fpaths[start:start+n] 
+                        x_seg = fpaths[start:start+n]
                         X_path.append(x_seg)
                         if not pad_y:
                             Y.append(poses[start:start+n])
@@ -132,7 +132,7 @@ def get_data_info(img_root,pose_root,folder_list, seq_len_range, overlap, sample
                     start += n - overlap
                     X_len.append(len(x_seg))
         print('Folder {} finish in {} sec'.format(folder, time.time()-start_t))
-    
+
     # Convert to pandas dataframes
     data = {'seq_len': X_len, 'image_path': X_path, 'pose': Y}
     df = pd.DataFrame(data, columns = ['seq_len', 'image_path', 'pose'])
@@ -149,9 +149,10 @@ class Config(object):
     num_workers = 4
     batch_size  = 8
 
-    test_video = ['04', '05', '07', '10', '09'] # ['00', '01', '02'] 
-    img_root = './KITTI/images'
-    gt_root  = './KITTI/pose_GT' 
+    #test_video = ['04', '05', '07', '10', '09'] # ['00', '01', '02']
+    test_video = ['room']
+    img_root = '../DeepVO-pytorch/KITTI/images'
+    gt_root  = '../DeepVO-pytorch/KITTI/pose_GT'
 
     cut_size = 7 #不要亂動 7就7
     overlap  = 0
@@ -171,7 +172,7 @@ class Config(object):
 
     seq_len = (5, 7)
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
 
     use_cuda = torch.cuda.is_available()
     torch.manual_seed(1214)
@@ -185,7 +186,7 @@ if __name__ == '__main__':
         os.makedirs(opts.save_dir, exist_ok=True)
 
     #############################################################################################################################################
-    
+
     # model 創建
     model = DeepVo(opts.img_new_size[0],opts.img_new_size[1],frame=opts.cut_size,hidden_size=opts.hidden_size)
 
@@ -193,7 +194,7 @@ if __name__ == '__main__':
     print('===========loading DeepVo Model :', os.path.join(opts.model_dir,opts.model_name) ,'===========')
     model.load_state_dict(torch.load(os.path.join(opts.model_dir,opts.model_name), map_location=map_location))
     model = model.to(device)
-    
+
     #############################################################################################################################################
 
 	# Data
@@ -205,13 +206,13 @@ if __name__ == '__main__':
     fd.write('\n'+'='*50 + '\n')
 
     for test_video in opts.test_video:
-        
+
         df = get_data_info(opts.img_root,opts.gt_root,folder_list=[test_video], seq_len_range=[seq_len, seq_len], overlap=overlap, sample_times=1, shuffle=False, sort=False)
         df = df.loc[df.seq_len == seq_len]  # drop last
         dataset = ImageSequenceDataset(df, 'rescale', opts.img_new_size, opts.img_mean, opts.img_std, opts.minus_point_5)
         df.to_csv('test_df.csv')
         dataloader = DataLoader(dataset, batch_size=opts.batch_size, shuffle=False, num_workers=opts.num_workers)
-        
+
         gt_pose = np.load('{}.npy'.format(os.path.join(opts.gt_root, test_video))) # (n_images, 6)
 
         # Predict
@@ -247,8 +248,8 @@ if __name__ == '__main__':
                     answer.append(pose.tolist())
                 batch_predict_pose = batch_predict_pose[1:]
 
-            # transform from relative to absolute 
-            
+            # transform from relative to absolute
+
             for predict_pose_seq in batch_predict_pose:
                 # predict_pose_seq[1:] = predict_pose_seq[1:] + predict_pose_seq[0:-1]
                 ang = eulerAnglesToRotationMatrix([0, answer[-1][0], 0]) #eulerAnglesToRotationMatrix([answer[-1][1], answer[-1][0], answer[-1][2]])

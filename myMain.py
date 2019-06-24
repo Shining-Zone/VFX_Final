@@ -23,8 +23,8 @@ class Config(object):
 
     train_video = ['00', '01', '02', '05', '08', '09']
     valid_video = ['04', '06', '07', '10']
-    img_root = './KITTI/images'
-    gt_root  = './KITTI/pose_GT' 
+    img_root = '../DeepVO-pytorch/KITTI/images'
+    gt_root  = '../DeepVO-pytorch/KITTI/pose_GT'
 
     cut_size = 7 #不要亂動 7就7
     overlap  = 1
@@ -38,21 +38,21 @@ class Config(object):
 
     model_dir  = 'model_para'
 
-    pretrain_model_name = 'flownets_bn_EPE2.459.pth.tar'  # 'flownets_EPE1.951.pth.tar'
+    pretrain_model_name = '../DeepVO-pytorch/FlowNetModels/pytorch/flownets_bn_EPE2.459.pth.tar'  # 'flownets_EPE1.951.pth.tar'
 
     save_interval = 1
 
 def test(opts):
-    
+
     #############################################################################################################################################
-    
+
     # model 創建
     model = DeepVo(opts.img_new_size[0],opts.img_new_size[1],frame=opts.cut_size,hidden_size=1000)
     load_pretrain_weight(model,opts.pretrain_model_name)
     model = model.to(device)
-    
+
     #############################################################################################################################################
-    
+
     # Dataloader創建
     transform1 = tv.transforms.Compose([tv.transforms.Resize(opts.img_new_size),tv.transforms.ToTensor()])
     transform2 =  tv.transforms.Compose([tv.transforms.Normalize(mean=opts.img_mean , std=opts.img_std)])
@@ -64,9 +64,9 @@ def test(opts):
     valid_data_information = get_data_info(opts.img_root,opts.gt_root,opts.valid_video,opts.cut_size,opts.overlap,test=True)
     valid_dataset = ImageSeqDataset(valid_data_information,transform1,transform2,minus_point_5=opts.minus_point_5)
     valid_dataloader = DataLoader(valid_dataset,batch_size=1,shuffle=False,num_workers=opts.num_workers,drop_last=False)     #這邊要注意!!! batch_size 為1
-    
+
     #############################################################################################################################################
-    
+
     if not os.path.exists(opts.model_dir):
         os.makedirs(opts.model_dir, exist_ok=True)
 
@@ -84,15 +84,15 @@ def test(opts):
 
             optimizer.zero_grad()
             output = model(img)
-            
+
             loss = get_mse_weighted_loss(output,gt)
 
             loss.backward()
             optimizer.step()
 
             total_loss += loss.item()
-        print('Train Epoch : {}\t Average_Loss: {:.6f}'.format(ep,total_loss/len(train_dataloader)))   
-        
+        print('Train Epoch : {}\t Average_Loss: {:.6f}'.format(ep,total_loss/len(train_dataloader)))
+
         model.eval()
         val_loss  = 0.0
         for i ,(_,v_img,v_gt) in enumerate(valid_dataloader):
@@ -104,13 +104,14 @@ def test(opts):
                 loss = get_mse_weighted_loss(v_output,v_gt)
 
                 val_loss += loss.item()
-        print('Valid Epoch : {}\t Average_Loss:  {:.6f}'.format(ep,val_loss/len(valid_dataloader)))    
+        print('Valid Epoch : {}\t Average_Loss:  {:.6f}'.format(ep,val_loss/len(valid_dataloader)))
 
         if (ep+1) % opts.save_interval == 0:
             print('=========save the model at Epoch : ' + str(ep) + ' =========')
-            torch.save(model.state_dict(), os.path.join(opts.model_dir,'DeepVo_Epoch_{}.pth'.format(ep)))
-    #############################################################################################################################################   
-    #紀錄檔案  
+            #torch.save(model.state_dict(), os.path.join(opts.model_dir,'DeepVo_Epoch_{}.pth'.format(ep)))
+            torch.save(model.state_dict(), os.path.join(opts.model_dir,'DeepVo_Epoch_best.pth'))
+    #############################################################################################################################################
+    #紀錄檔案
         f.write('='*50+'\n')
         f.write('Epoch {}\tTrain Average_Loss: {} Valid Average_Loss: {}\n'.format(ep, total_loss/len(train_dataloader), val_loss/len(valid_dataloader)))
     f.write('='*50+'\n')
