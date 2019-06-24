@@ -25,6 +25,7 @@ wget
 <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_200_250.png" width="630">
 
 #### 1. test on KITTI dataset video: ```04, 05, 07, 09, 10```  
+paper result
 
 |pre-trained model from [alexart13](https://github.com/alexart13) |  our model  |
 | ------------- | -------------------- |
@@ -44,3 +45,5 @@ video
 |Author|陳健倫|李尚倫|李佳蓮|
 |---|---|---|---|
 ****
+
+reference
