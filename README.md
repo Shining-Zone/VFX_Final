@@ -12,9 +12,12 @@ training loss and learing cure: ```record.txt, VFX.xlsx```
 TBD
 
 ## Usage
-1. Download out dataset  
+1. Download our dataset  
 https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
-2. 
+2. Download our pretrain model
+```
+wget
+```
 
 ****
 |Author|陳健倫|李尚倫|李佳蓮|
