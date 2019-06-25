@@ -1,0 +1,23 @@
+<launch>
+
+  <param name='odomFile_path' value="/home/shannon/Documents/VFX_Final/result/out_room.txt"/>
+  <param name='imgFile_path' value="/home/shannon/Documents/DeepVO-pytorch/KITTI/images/room"/>
+
+  <!--static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms
+  Publish a static coordinate transform to tf using an x/y/z offset in meters and
+  yaw/pitch/roll in radians. (yaw is rotation about Z, pitch is rotation about Y, and roll is rotation about X).
+  The period, in milliseconds, specifies how often to send a transform. 100ms (10hz) is a good value.
+  x y z yaw pitch roll sequentially translate/rotate then would find the final solution-->
+  <!--arg name="rviz_pose" default="0 0 1.73 -1.57 0 -1.57"/--> <!--xyzypr-->
+  <arg name="rviz_pose" default="0 1.73 0 1.57 -1.57 0"/> <!--xyzypr-->
+
+  <node name='odom_kitti_publisher' type='odom_kitti_publisher' pkg='odometry_visualizer' output='screen'/>
+
+  <node pkg="tf" type="static_transform_publisher" name="car2cam_broadcaster_GT"
+    args="$(arg rviz_pose) odom_top odom 100"
+    respawn="true"/>
+
+  <!--Gui rviz interface (Optional)-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find odometry_visualizer)/rviz/odometry_kitti.rviz" />
+
+</launch>
