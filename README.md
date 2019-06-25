@@ -4,44 +4,57 @@ description
 ****
 
 ## I.Usage
-1. Download KITTI dataset  
+1. Download KITTI dataset as KITTI/image/,   
 ```
 cd KITTI/
 bash downloader.sh
 ```
-2. Download our dataset, uzip them and put them into KITTI/image/  
+2. Download KITTI dataset ground truth label as KITTI/pose_GT/,   
 ```
-download https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
+cd KITTI/
+download: http://www.cvlibs.net/download.php?file=data_odometry_poses.zip
+rename as KITTI/pose_GT 
+```
+3. Transfer ground truth pose from [R|t] to rpyxyzR as .npy into KITTI/pose_GT/
+3.5. Transfer .npy ground truth to rpyxyz into /GT_pose_rpyxyz
+```
+python3 preprocess.py
+python3 myGTtxt_generator.py
+```
+4. Download our dataset, uzip them and put them into KITTI/image/  
+```
+cd KITTI/
+download: https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
 ntu_30fstep unzip as KITTI/image/ntu
 room_1fstep unzip as KITTI/image/room
 campus1_2fstep unzip as KITTI/image/campus1
 campus2_2fstep unzip as KITTI/image/campus2
 ```
-3. Download our pretrain mode, and put it into model/
+5. Download our pretrain mode, and put it into model/
 ```
 mkdir model
 cd model
 wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=0
 ```
-4. Specify your path in ```myMain.py, myTest.py, myTestNoGT.py, myVisualize.py, myVisualizeNoGT.py```
+6. Specify your path in ```myMain.py, myTest.py, myTestNoGT.py, myVisualize.py, myVisualizeNoGT.py```
 ```
 GTpost...TBD
 ```
-5. (optional) Training your own model (you may need [flownet pretrain model](https://drive.google.com/drive/folders/0B5EC7HMbyk3CbjFPb0RuODI3NmM)
+7. (optional) Training your own model (you may need [flownet pretrain model](https://drive.google.com/drive/folders/0B5EC7HMbyk3CbjFPb0RuODI3NmM)
 ```
 python3 myMain.py
 ```
-6. Predict the KITTI dataset pose and our dataset pose
+8. Predict the KITTI dataset pose and our dataset pose
 ```
 python3 myTest.py
 python3 myTestNoGT.py
 ```
-7. Visualize the prediction of KITTI and our dataset
+9. Visualize the prediction of KITTI and our dataset
 ```
 python3 myVisualize.py
 python3 myVisualizeNoGT.py
 ```
-8. Visualize poses dynamically by Rviz (ROS Kinetic required)
+10. Visualize poses dynamically by Rviz (ROS Kinetic required)
 ```
 cd catkin_ws/src
 git clone https://github.com/shannon112/ros_odometry_visualizer.git
