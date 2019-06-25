@@ -58,8 +58,7 @@ python3 myVisualizeNoGT.py
 ```
 10. Visualize poses dynamically by Rviz (ROS Kinetic required)
 ```
-cd catkin_ws/src
-git clone https://github.com/shannon112/ros_odometry_visualizer.git
+mv ros_odometry_visualizer catkin_ws/src/ros_odometry_visualizer
 vim ros_odometry_visualizer/launch/odometry_kitti_visualizer    #edit your own path
 roscd
 cd ..
