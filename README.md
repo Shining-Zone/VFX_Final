@@ -34,7 +34,7 @@ campus2_2fstep unzip as KITTI/image/campus2
 ```
 mkdir model
 cd model
-wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=0
+wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=1
 ```
 6. Specify your path in ```myMain.py, myTest.py, myTestNoGT.py, myVisualize.py, myVisualizeNoGT.py```
 ```
