@@ -20,9 +20,8 @@ wget
 
 ## Result
 #### 0. Learning Curve
-<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_0_100.png" width="840">
-<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_100_200.png" width="840">
-<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_200_250.png" width="630">
+<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_0_100.png" width="420"><img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_100_200.png" width="420">
+<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_200_250.png" width="320">
 
 #### 1. test on KITTI dataset video: ```04, 05, 07, 09, 10```  
 paper result
@@ -36,7 +35,11 @@ paper result
 |<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/paper_result/10.png" width="280">|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_10_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_10_gradient.png" width="280"> | 
 
 #### 2. test on Self-made dataset video: ```ntu, room, campus1, campus2```  
-4 images
+| ntu           | ntu-ref      |  room                |  room-ref                |
+| ------------- |--------------| -------------------- |-------------------- |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_ntu_gradient.png" width="210">|  | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_room_gradient.png" width="210"> |  |
+| **campus1** | **campus1-ref** | **campus2** | **campus2-ref** |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus1_gradient.png" width="210">|  | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus2_gradient.png" width="210"> |  |
 
 #### 3. Rviz visualizing demo
 video
