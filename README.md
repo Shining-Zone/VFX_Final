@@ -4,11 +4,46 @@ description
 ****
 
 ## I.Usage
-1. Download our dataset  
-https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
-2. Download our pretrain model
+1. Download KITTI dataset  
 ```
-wget
+cd KITTI/
+bash downloader.sh
+```
+2. Download our dataset, uzip them and put them into KITTI/image/  
+https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
+3. Download our pretrain mode, and put it into model/
+```
+mkdir model
+cd model
+wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=0
+```
+4. Specify your path in ```myMain.py, myTest.py, myTestNoGT.py, myVisualize.py, myVisualizeNoGT.py```
+```
+GTpost...TBD
+```
+5. (optional) Training your own model (you may need [flownet pretrain model](https://drive.google.com/drive/folders/0B5EC7HMbyk3CbjFPb0RuODI3NmM)
+```
+python3 myMain.py
+```
+6. Predict the KITTI dataset pose and our dataset pose
+```
+python3 myTest.py
+python3 myTestNoGT.py
+```
+7. Visualize the prediction of KITTI and our dataset
+```
+python3 myVisualize.py
+python3 myVisualizeNoGT.py
+```
+8. Visualize poses dynamically by Rviz (ROS Kinetic required)
+```
+cd catkin_ws/src
+git clone https://github.com/shannon112/ros_odometry_visualizer.git
+vim ros_odometry_visualizer/launch/odometry_kitti_visualizer    #edit your own path
+roscd
+cd ..
+catkin_make
+roslaunch ros_odomtry_visualizer odometry_kitti_visualizer.launch
 ```
 
 ## II.Data Usage
