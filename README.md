@@ -1,5 +1,5 @@
-# VFX_Final
-
+## VFX_Final: DeepVO pytorch implementation and Rviz visualization
+<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/doc/model1.png" height="170"><img src="https://github.com/Shining-Zone/VFX_Final/blob/master/doc/model2.png" height="170">
 description
 ****
 
