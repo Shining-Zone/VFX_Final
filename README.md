@@ -29,11 +29,11 @@ paper result
 
 |pre-trained model from [alexart13](https://github.com/alexart13) |  our model  |
 | ------------- | -------------------- |
-|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_04_gradient.png" width="420"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_04_gradient.png" width="420"> |
-|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_05_gradient.png" width="420"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_05_gradient.png" width="420">|
-|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_07_gradient.png" width="420"> |<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_07_gradient.png" width="420"> |
-|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_09_gradient.png" width="420"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_09_gradient.png" width="420"> |
-|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_10_gradient.png" width="420"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_10_gradient.png" width="420"> |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_04_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_04_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/paper_result/04.png" width="280"> |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_05_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_05_gradient.png" width="280">| <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/paper_result/05.png" width="280"> |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_07_gradient.png" width="280"> |<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_07_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/paper_result/07.png" width="280"> |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_09_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_09_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/paper_result/09.png" width="280"> |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/ref_result/route_10_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_10_gradient.png" width="280"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/paper_result/10.png" width="280"> |
 
 #### 2. test on Self-made dataset video: ```ntu, room, campus1, campus2```  
 4 images
