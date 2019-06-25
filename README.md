@@ -37,9 +37,9 @@ paper result
 #### 2. test on Self-made dataset video: ```ntu, room, campus1, campus2```  
 | ntu           | ntu-ref      |  room                |  room-ref                |
 | ------------- |--------------| -------------------- |-------------------- |
-|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_ntu_gradient.png" width="210">|  | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_room_gradient.png" width="210"> |  |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_ntu_gradient.png" width="210">| <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/ntu_GT.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_room_gradient.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/room_GT.png" width="210"> |
 | **campus1** | **campus1-ref** | **campus2** | **campus2-ref** |
-|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus1_gradient.png" width="210">|  | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus2_gradient.png" width="210"> |  |
+|<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus1_gradient.png" width="210">| <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/campus1_GT.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus2_gradient.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/campus2_GT.png" width="210"> |
 
 #### 3. Rviz visualizing demo
 video
