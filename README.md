@@ -10,7 +10,13 @@ cd KITTI/
 bash downloader.sh
 ```
 2. Download our dataset, uzip them and put them into KITTI/image/  
-https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
+```
+download https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
+ntu_30fstep unzip as KITTI/image/ntu
+room_1fstep unzip as KITTI/image/room
+campus1_2fstep unzip as KITTI/image/campus1
+campus2_2fstep unzip as KITTI/image/campus2
+```
 3. Download our pretrain mode, and put it into model/
 ```
 mkdir model
