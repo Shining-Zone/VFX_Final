@@ -4,19 +4,19 @@ description
 ****
 
 ## I.Usage
-1. Download KITTI dataset as KITTI/image/,   
+1. Download KITTI dataset as KITTI/image/    
 ```
 cd KITTI/
 bash downloader.sh
 ```
-2. Download KITTI dataset ground truth label as KITTI/pose_GT/,   
+2. Download KITTI dataset ground truth label as KITTI/pose_GT/   
 ```
 cd KITTI/
 download: http://www.cvlibs.net/download.php?file=data_odometry_poses.zip
 rename as KITTI/pose_GT 
 ```
-3. Transfer ground truth pose from [R|t] to rpyxyzR as .npy into KITTI/pose_GT/
-3.5. Transfer .npy ground truth to rpyxyz into /GT_pose_rpyxyz
+3. Transfer ground truth pose from [R|t] to rpyxyzR as .npy into KITTI/pose_GT/ for training  
+3.5. Transfer .npy ground truth to rpyxyz into /GT_pose_rpyxyz for rviz visualizer  
 ```
 python3 preprocess.py
 python3 myGTtxt_generator.py
