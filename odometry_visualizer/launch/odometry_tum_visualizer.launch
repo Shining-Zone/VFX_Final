@@ -1,6 +1,0 @@
-<launch>
-  <param name='odomFile_path' value="/home/shannon/Downloads/rgbd_dataset_freiburg1_xyz/groundtruth.txt"/>
-  <param name='imgFile_path' value="/home/shannon/Downloads/rgbd_dataset_freiburg1_xyz/rgb"/>
-
-  <node name='odom_tum_publisher' type='odom_tum_publisher' pkg='odometry_visualizer' output='screen'/>
-</launch>

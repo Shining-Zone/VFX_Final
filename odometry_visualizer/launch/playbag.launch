@@ -1,7 +1,0 @@
-<launch>
-  <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/shannon/Downloads/rgbd_dataset_freiburg1_desk.bag"/>
-
-  <!--Gui rviz interface (Optional)-->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find odometry_visualizer)/rviz/odometry_tum.rviz" />
-
-</launch>
