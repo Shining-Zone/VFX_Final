@@ -76,7 +76,7 @@ test on Self-made dataset video: ```ntu, room, campus1, campus2```
 ```ntu, campus1, campus2``` are recorded by iPhone8 with riding bicycle  
 ```room``` is recorded by iPhone8 through walking  
 All videos are processed by Blender to 1241x376 resolution png sequences  
-
+<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/doc/blender_setting.png" width="620">
 
 ## IV.Result
 #### 0. Learning Curve
