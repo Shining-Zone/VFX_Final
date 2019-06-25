@@ -4,24 +4,24 @@ description
 ****
 
 ## I.Usage
-1. Download KITTI dataset as KITTI/image/    
+1. Download KITTI dataset image as ```KITTI/image/```    
 ```
 cd KITTI/
 bash downloader.sh
 ```
-2. Download KITTI dataset ground truth label as KITTI/pose_GT/   
+2. Download KITTI dataset ground truth label as ```KITTI/pose_GT/```   
 ```
 cd KITTI/
 download: http://www.cvlibs.net/download.php?file=data_odometry_poses.zip
 rename as KITTI/pose_GT 
 ```
-3. Transfer ground truth pose from [R|t] to rpyxyzR as .npy into KITTI/pose_GT/ for training  
-3.5. Transfer .npy ground truth to rpyxyz into /GT_pose_rpyxyz for rviz visualizer  
+3. Transfer ground truth pose from [R|t] to rpyxyzR as .npy into ```KITTI/pose_GT/``` for training  
+3.5. Transfer .npy ground truth to rpyxyz into ```/GT_pose_rpyxyz``` for visualizing  
 ```
 python3 preprocess.py
-python3 myGTtxt_generator.py
+python3 myGTtxt_generator.py     # Need to specify your path
 ```
-4. Download our dataset, uzip them and put them into KITTI/image/  
+4. Download our dataset, uzip them and put them into ```KITTI/image/```  
 ```
 cd KITTI/
 download: https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
@@ -30,7 +30,7 @@ room_1fstep unzip as KITTI/image/room
 campus1_2fstep unzip as KITTI/image/campus1
 campus2_2fstep unzip as KITTI/image/campus2
 ```
-5. Download our pretrain mode, and put it into model/
+5. Download our pretrain model ```DeepVo_Epoch_Last.pth```, and put it into ```model/```
 ```
 mkdir model
 cd model
@@ -38,7 +38,9 @@ wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=0
 ```
 6. Specify your path in ```myMain.py, myTest.py, myTestNoGT.py, myVisualize.py, myVisualizeNoGT.py```
 ```
-GTpost...TBD
+gt_root to KITTI/pose_GT
+img_root to KITTI/images
+pose_GT_dir to KITTI/pose_GT
 ```
 7. (optional) Training your own model (you may need [flownet pretrain model](https://drive.google.com/drive/folders/0B5EC7HMbyk3CbjFPb0RuODI3NmM)
 ```
