@@ -105,7 +105,11 @@ paper result
 |<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus1_gradient.png" width="210">| <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/campus1_GT.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus2_gradient.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/campus2_GT.png" width="210"> |
 
 #### 3. Rviz visualizing demo
-video
+all in: https://drive.google.com/drive/folders/16Mqq-QOYdFPORCvmaqvTxSjoXwKzzQ8O?usp=sharing
+
+#### 4. Report in pdf
+```doc/VFXfinal_report```
+```doc/VFXfinal_presentation```
 
 ## V.Reference
 [1] S. Wang, R. Clark, H. Wen and N. Trigoni, "DeepVO: Towards end-to-end visual odometry with deep Recurrent Convolutional Neural Networks," 2017 IEEE International Conference on Robotics and Automation (ICRA), Singapore, 2017, pp. 2043-2050.  
