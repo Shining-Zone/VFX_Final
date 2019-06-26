@@ -109,7 +109,8 @@ paper result
 
 
 #### 3. Rviz visualizing demo
-all in: https://drive.google.com/drive/folders/16Mqq-QOYdFPORCvmaqvTxSjoXwKzzQ8O?usp=sharing
+all in: https://drive.google.com/drive/folders/16Mqq-QOYdFPORCvmaqvTxSjoXwKzzQ8O?usp=sharing  
+(we suggest you to use VLC player to play those screen recording video, if you fail to open them.)  
 
 #### 4. Report in pdf
 ```doc/VFXfinal_report.pdf```  
