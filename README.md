@@ -118,9 +118,9 @@ all in: https://drive.google.com/drive/folders/16Mqq-QOYdFPORCvmaqvTxSjoXwKzzQ8O
 ## V.Reference
 [1] S. Wang, R. Clark, H. Wen and N. Trigoni, "DeepVO: Towards end-to-end visual odometry with deep Recurrent Convolutional Neural Networks," 2017 IEEE International Conference on Robotics and Automation (ICRA), Singapore, 2017, pp. 2043-2050.  
 [2] reference: https://github.com/ChiWeiHsiao/DeepVO-pytorch  
-[3] visualizer odometry: http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom
-[4] visualizer: http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom
-[5] visualizer marker: http://wiki.ros.org/rviz/Tutorials/Markers%3A%20Basic%20Shapes
+[3] visualizer odometry: http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom  
+[4] visualizer image: http://wiki.ros.org/image_transport/Tutorials/PublishingImages  
+[5] visualizer marker: http://wiki.ros.org/rviz/Tutorials/Markers%3A%20Basic%20Shapes  
 
 ****
 |Author|陳健倫|李尚倫|李佳蓮|
