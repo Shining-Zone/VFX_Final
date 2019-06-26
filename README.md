@@ -24,7 +24,7 @@ python3 myGTtxt_generator.py     # Need to specify your path
 4. Download our dataset, uzip them and put them into ```KITTI/image/```  
 ```
 cd KITTI/
-download: https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
+download: https://drive.google.com/open?id=1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf  
 images/ntu_15fstep unzip as KITTI/image/ntu
 images/room_1fstep unzip as KITTI/image/room
 images/campus1_2fstep unzip as KITTI/image/campus1
