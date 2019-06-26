@@ -33,10 +33,10 @@ images/ntu3_15tstep unzip as KITTI/image/ntu3
 images/ntu4_15fstep unzip as KITTI/image/ntu4
 move all things in pose_GT to KITTI/pose_GT
 ```
-5. Download our pretrain model ```DeepVo_Epoch_Last.pth```, and put it into ```model/```
+5. Download our pretrain model ```DeepVo_Epoch_Last.pth```, and put it into ```model_para/```
 ```
-mkdir model
-cd model
+mkdir model_para
+cd model_para
 wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=1
 ```
 6. Specify your path in ```myMain.py, myTest.py, myTestNoGT.py, myVisualize.py, myVisualizeNoGT.py```
@@ -45,7 +45,8 @@ gt_root to KITTI/pose_GT
 img_root to KITTI/images
 pose_GT_dir to KITTI/pose_GT
 ```
-7. (optional) Training your own model (you may need [flownet pretrain model](https://drive.google.com/drive/folders/0B5EC7HMbyk3CbjFPb0RuODI3NmM)
+7. (optional) Training your own 
+(you may need [flownet pretrain model](https://drive.google.com/drive/folders/0B5EC7HMbyk3CbjFPb0RuODI3NmM)
 ```
 python3 myMain.py
 ```
@@ -116,7 +117,10 @@ all in: https://drive.google.com/drive/folders/16Mqq-QOYdFPORCvmaqvTxSjoXwKzzQ8O
 
 ## V.Reference
 [1] S. Wang, R. Clark, H. Wen and N. Trigoni, "DeepVO: Towards end-to-end visual odometry with deep Recurrent Convolutional Neural Networks," 2017 IEEE International Conference on Robotics and Automation (ICRA), Singapore, 2017, pp. 2043-2050.  
-[2] https://github.com/ChiWeiHsiao/DeepVO-pytorch  
+[2] reference: https://github.com/ChiWeiHsiao/DeepVO-pytorch  
+[3] visualizer odometry: http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom
+[4] visualizer: http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom
+[5] visualizer marker: http://wiki.ros.org/rviz/Tutorials/Markers%3A%20Basic%20Shapes
 
 ****
 |Author|陳健倫|李尚倫|李佳蓮|
