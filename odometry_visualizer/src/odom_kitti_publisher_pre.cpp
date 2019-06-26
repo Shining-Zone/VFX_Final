@@ -23,18 +23,18 @@ vector<vector<string> > parsedCsv;
 int main(int argc, char** argv){
 
   /* =============initailize ros=============*/
-  ros::init(argc, argv, "odometry_publisher_GT");
+  ros::init(argc, argv, "odometry_publisher_pre");
   //ros node
   ros::NodeHandle n;
   //ros publisher
-  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom_GT", 50);
+  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom_pre", 50);
   //ros tf broadcaster
   tf::TransformBroadcaster odom_broadcaster;
   //ros img publisher
   image_transport::ImageTransport it(n);
-  image_transport::Publisher img_pub = it.advertise("camera/image_GT", 10);
+  image_transport::Publisher img_pub = it.advertise("camera/image_pre", 10);
   //ros marker publisher
-  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker_GT", 1);
+  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker_pre", 1);
   //ros time
   ros::Time current_time, last_time;
   current_time = ros::Time::now();
@@ -57,7 +57,7 @@ int main(int argc, char** argv){
   /* =============reading pose=============*/
   //get odom output file from ros parameter
   string odomFile_path;
-  n.getParam("odomFile_path_GT", odomFile_path);
+  n.getParam("odomFile_path_pre", odomFile_path);
   ROS_INFO("get the odomFile at: %s",odomFile_path.c_str());
 
   //readfile, read odometry points
@@ -133,7 +133,7 @@ int main(int argc, char** argv){
     geometry_msgs::TransformStamped odom_trans;
     odom_trans.header.stamp = current_time;
     odom_trans.header.frame_id = "odom_top";
-    odom_trans.child_frame_id = "camera_link_GT";
+    odom_trans.child_frame_id = "camera_link_pre";
 
     odom_trans.transform.translation.x = x;
     odom_trans.transform.translation.y = y;
@@ -156,7 +156,7 @@ int main(int argc, char** argv){
     odom.pose.pose.orientation = odom_quat;
 
     //set the velocity
-    odom.child_frame_id = "camera_link_GT";
+    odom.child_frame_id = "camera_link_pre";
     odom.twist.twist.linear.x = vx;
     odom.twist.twist.linear.y = vy;
     odom.twist.twist.linear.z = vz;
@@ -179,8 +179,8 @@ int main(int argc, char** argv){
     while(marker_pub.getNumSubscribers() == 0){
     }
     visualization_msgs::Marker object;
-    object.color.r = 0.0;
-    object.color.g = 1.0;
+    object.color.r = 1.0;
+    object.color.g = 0.0;
     object.color.b = 0.0;
     object.pose.position= odom.pose.pose.position;
     object.header.frame_id = "odom_top";

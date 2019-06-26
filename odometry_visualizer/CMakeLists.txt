@@ -145,6 +145,9 @@ target_link_libraries(odom_publisher ${catkin_LIBRARIES})
 add_executable(odom_kitti_publisher_GT src/odom_kitti_publisher_GT.cpp)
 target_link_libraries(odom_kitti_publisher_GT ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
+add_executable(odom_kitti_publisher_pre src/odom_kitti_publisher_pre.cpp)
+target_link_libraries(odom_kitti_publisher_pre ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
 add_executable(odom_kitti_publisher src/odom_kitti_publisher.cpp)
 target_link_libraries(odom_kitti_publisher ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 

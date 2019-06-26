@@ -1,8 +1,9 @@
 <launch>
 
-  <param name='odomFile_path' value="/home/shannon/Documents/DeepVO-pytorch/result/out_04.txt"/>
-  <param name='odomFile_path_GT' value="/home/shannon/Documents/VFX_Final/GT_pose_rpyxyz/GT_04.txt"/>
-  <param name='imgFile_path' value="/home/shannon/Documents/DeepVO-pytorch/KITTI/images/04"/>
+  <param name='odomFile_path' value="/home/shannon/Documents/VFX_Final/result/out_10.txt"/>
+  <param name='odomFile_path_pre' value="/home/shannon/Documents/VFX_Final/ref_result/out_10.txt"/>
+  <param name='odomFile_path_GT' value="/home/shannon/Documents/VFX_Final/GT_pose_rpyxyz/GT_10.txt"/>
+  <param name='imgFile_path' value="/home/shannon/Documents/DeepVO-pytorch/KITTI/images/10"/>
 
   <!--static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms
   Publish a static coordinate transform to tf using an x/y/z offset in meters and
@@ -13,6 +14,7 @@
   <arg name="rviz_pose" default="0 1.73 0 1.57 -1.57 0"/> <!--xyzypr-->
 
   <node name='odom_kitti_publisher' type='odom_kitti_publisher' pkg='odometry_visualizer' output='screen'/>
+  <node name='odom_kitti_publisher_pre' type='odom_kitti_publisher_pre' pkg='odometry_visualizer' output='screen'/>
   <node name='odom_kitti_publisher_GT' type='odom_kitti_publisher_GT' pkg='odometry_visualizer' output='screen'/>
 
   <node pkg="tf" type="static_transform_publisher" name="car2cam_broadcaster_GT"

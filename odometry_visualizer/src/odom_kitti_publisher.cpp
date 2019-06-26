@@ -170,13 +170,14 @@ int main(int argc, char** argv){
     /* =============publish image topic=============*/
     //std::string image_path_s = image_path.str();
     cv::Mat image = cv::imread(img_filename_array[iter], CV_LOAD_IMAGE_COLOR);
+    //cout << img_filename_array[iter] <<endl;
     cv::waitKey(30);
     sensor_msgs::ImagePtr img_msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
     img_pub.publish(img_msg);
 
     /* =============publish marker topic=============*/
+    //ROS_INFO("wait for marker!");
     while(marker_pub.getNumSubscribers() == 0){
-      ROS_INFO("wait for marker!");
     }
     visualization_msgs::Marker object;
     object.color.r = 1.0;

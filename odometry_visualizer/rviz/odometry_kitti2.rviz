@@ -62,7 +62,7 @@ Visualization Manager:
           Value: true
         odom_top:
           Value: true
-      Marker Scale: 120
+      Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -88,13 +88,13 @@ Visualization Manager:
       Unreliable: false
       Value: true
     - Class: rviz/Marker
-      Enabled: true
+      Enabled: false
       Marker Topic: visualization_marker
       Name: Marker
       Namespaces:
-        "": true
+        {}
       Queue Size: 100
-      Value: true
+      Value: false
     - Class: rviz/Marker
       Enabled: true
       Marker Topic: /visualization_marker_GT
@@ -135,21 +135,26 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.58499944
-      Class: rviz/TopDownOrtho
+      Class: rviz/XYOrbit
+      Distance: 6.45423174
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 1.35219049
+      Pitch: 0.210398346
       Target Frame: <Fixed Frame>
-      Value: TopDownOrtho (rviz)
-      X: 271.535583
-      Y: -93.0028534
+      Value: XYOrbit (rviz)
+      Yaw: 0.770398259
     Saved: ~
 Window Geometry:
   Displays:
