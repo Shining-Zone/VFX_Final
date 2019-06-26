@@ -1,6 +1,5 @@
 ## VFX_Final: DeepVO pytorch implementation and Rviz visualization
 <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/doc/model1.png" height="170"><img src="https://github.com/Shining-Zone/VFX_Final/blob/master/doc/model2.png" height="170">
-description
 ****
 
 ## I.Usage
@@ -60,14 +59,16 @@ python3 myTestNoGT.py
 python3 myVisualize.py
 python3 myVisualizeNoGT.py
 ```
-10. Visualize poses dynamically by Rviz (ROS Kinetic required)
+10. Visualize poses dynamically by Rviz ([ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) pre-instealled required)
 ```
-mv ros_odometry_visualizer catkin_ws/src/ros_odometry_visualizer
-vim ros_odometry_visualizer/launch/odometry_kitti_visualizer    #edit your own path
+mv ros_odometry_visualizer catkin_ws/src/ros_odometry_visualizer    #move the folder to your catkin workspace
+vim ros_odometry_visualizer/launch/odometry_kitti_visualizer.launch     #edit your own path
 roscd
 cd ..
 catkin_make
-roslaunch ros_odomtry_visualizer odometry_kitti_visualizer.launch
+rospack profile
+roslaunch ros_odomtry_visualizer odometry_kitti_visualizer.launch  # visualizing kitti result
+roslaunch ros_odomtry_visualizer odometry_kitti_visualizer_noGT.launch 	 # visualizing our dataset result
 ```
 
 ## II.Data Usage
