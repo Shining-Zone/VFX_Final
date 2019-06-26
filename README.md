@@ -108,8 +108,8 @@ paper result
 all in: https://drive.google.com/drive/folders/16Mqq-QOYdFPORCvmaqvTxSjoXwKzzQ8O?usp=sharing
 
 #### 4. Report in pdf
-```doc/VFXfinal_report```
-```doc/VFXfinal_presentation```
+```doc/VFXfinal_report.pdf```  
+```doc/VFXfinal_presentation.pdf```  
 
 ## V.Reference
 [1] S. Wang, R. Clark, H. Wen and N. Trigoni, "DeepVO: Towards end-to-end visual odometry with deep Recurrent Convolutional Neural Networks," 2017 IEEE International Conference on Robotics and Automation (ICRA), Singapore, 2017, pp. 2043-2050.  
