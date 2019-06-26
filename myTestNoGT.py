@@ -151,8 +151,8 @@ class Config(object):
 
     #test_video = ['04', '05', '07', '10', '09'] # ['00', '01', '02']
     test_video = ['ntu4','ntu3','campus1','campus2','room','ntu']
-    img_root = '../DeepVO-pytorch/KITTI/images'
-    gt_root = '../DeepVO-pytorch/KITTI/pose_GT'
+    img_root = './KITTI/images'
+    gt_root = './KITTI/pose_GT'
 
     cut_size = 7 #不要亂動 7就7
     overlap  = 0

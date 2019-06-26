@@ -23,8 +23,8 @@ class Config(object):
 
     train_video = ['00', '01', '02', '05', '08', '09']
     valid_video = ['04', '06', '07', '10']
-    img_root = '../DeepVO-pytorch/KITTI/images'
-    gt_root  = '../DeepVO-pytorch/KITTI/pose_GT'
+    img_root = './KITTI/images'
+    gt_root  = './KITTI/pose_GT'
 
     cut_size = 7 #不要亂動 7就7
     overlap  = 1
@@ -38,7 +38,7 @@ class Config(object):
 
     model_dir  = 'model_para'
 
-    pretrain_model_name = '../DeepVO-pytorch/FlowNetModels/pytorch/flownets_bn_EPE2.459.pth.tar'  # 'flownets_EPE1.951.pth.tar'
+    pretrain_model_name = './flownets_bn_EPE2.459.pth.tar'  # 'flownets_EPE1.951.pth.tar'
 
     save_interval = 1
 
