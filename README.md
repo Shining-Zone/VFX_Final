@@ -25,10 +25,13 @@ python3 myGTtxt_generator.py     # Need to specify your path
 ```
 cd KITTI/
 download: https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
-ntu_30fstep unzip as KITTI/image/ntu
-room_1fstep unzip as KITTI/image/room
-campus1_2fstep unzip as KITTI/image/campus1
-campus2_2fstep unzip as KITTI/image/campus2
+images/ntu_15fstep unzip as KITTI/image/ntu
+images/room_1fstep unzip as KITTI/image/room
+images/campus1_2fstep unzip as KITTI/image/campus1
+images/campus2_2fstep unzip as KITTI/image/campus2
+images/ntu3_15tstep unzip as KITTI/image/ntu3
+images/ntu4_15fstep unzip as KITTI/image/ntu4
+move all things in pose_GT to KITTI/pose_GT
 ```
 5. Download our pretrain model ```DeepVo_Epoch_Last.pth```, and put it into ```model/```
 ```
