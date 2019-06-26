@@ -3,11 +3,17 @@ import glob
 import numpy as np
 import time
 from helper import R_to_angle
-from params import par
 from torchvision import transforms
 from PIL import Image
 import torch
 import math
+
+class Config(object):
+	data_dir  = './KITTI/'
+	image_dir = './KITTI/images/'
+	pose_dir  = './KITTI/pose_GT/'
+
+par = Config()
 
 def clean_unused_images():
 	seq_frame = {'00': ['000', '004540'],
@@ -111,6 +117,8 @@ if __name__ == '__main__':
 	clean_unused_images()
 	create_pose_data()
 	
+	
+
 	# Calculate RGB means of images in training videos
 	train_video = ['00', '02', '08', '09', '06', '04', '10']
 	image_path_list = []

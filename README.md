@@ -24,11 +24,14 @@ python3 myGTtxt_generator.py     # Need to specify your path
 4. Download our dataset, uzip them and put them into ```KITTI/image/```  
 ```
 cd KITTI/
-download: https://drive.google.com/drive/folders/1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf?usp=sharing  
-ntu_30fstep unzip as KITTI/image/ntu
-room_1fstep unzip as KITTI/image/room
-campus1_2fstep unzip as KITTI/image/campus1
-campus2_2fstep unzip as KITTI/image/campus2
+download: https://drive.google.com/open?id=1DVB0K2cufUY0mSzXrByesJdHrs4bZqDf  
+images/ntu_15fstep unzip as KITTI/image/ntu
+images/room_1fstep unzip as KITTI/image/room
+images/campus1_2fstep unzip as KITTI/image/campus1
+images/campus2_2fstep unzip as KITTI/image/campus2
+images/ntu3_15tstep unzip as KITTI/image/ntu3
+images/ntu4_15fstep unzip as KITTI/image/ntu4
+move all things in pose_GT to KITTI/pose_GT
 ```
 5. Download our pretrain model ```DeepVo_Epoch_Last.pth```, and put it into ```model/```
 ```
@@ -102,7 +105,11 @@ paper result
 |<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus1_gradient.png" width="210">| <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/campus1_GT.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/route_campus2_gradient.png" width="210"> | <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/result/campus2_GT.png" width="210"> |
 
 #### 3. Rviz visualizing demo
-video
+all in: https://drive.google.com/drive/folders/16Mqq-QOYdFPORCvmaqvTxSjoXwKzzQ8O?usp=sharing
+
+#### 4. Report in pdf
+```doc/VFXfinal_report.pdf```  
+```doc/VFXfinal_presentation.pdf```  
 
 ## V.Reference
 [1] S. Wang, R. Clark, H. Wen and N. Trigoni, "DeepVO: Towards end-to-end visual odometry with deep Recurrent Convolutional Neural Networks," 2017 IEEE International Conference on Robotics and Automation (ICRA), Singapore, 2017, pp. 2043-2050.  
