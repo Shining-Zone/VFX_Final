@@ -4,7 +4,7 @@ import os
 if not os.path.exists("GT_pose_rpyxyz"):
     os.makedirs("GT_pose_rpyxyz", exist_ok=True)
 
-gt_root = '../DeepVO-pytorch/KITTI/pose_GT'
+gt_root = './KITTI/pose_GT'
 video_list = ["00","01","02","03","04","05","06","07","08","09","10"]
 n_gt_poses  = [np.load('{}.npy'.format(os.path.join(gt_root,gt_kind))) for gt_kind in video_list ]
 print(len(n_gt_poses))

@@ -34,7 +34,7 @@ campus2_2fstep unzip as KITTI/image/campus2
 ```
 mkdir model
 cd model
-wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=0
+wget https://www.dropbox.com/s/0or826j6clrbh3h/DeepVo_Epoch_Last.pth?dl=1
 ```
 6. Specify your path in ```myMain.py, myTest.py, myTestNoGT.py, myVisualize.py, myVisualizeNoGT.py```
 ```
@@ -58,8 +58,7 @@ python3 myVisualizeNoGT.py
 ```
 10. Visualize poses dynamically by Rviz (ROS Kinetic required)
 ```
-cd catkin_ws/src
-git clone https://github.com/shannon112/ros_odometry_visualizer.git
+mv ros_odometry_visualizer catkin_ws/src/ros_odometry_visualizer
 vim ros_odometry_visualizer/launch/odometry_kitti_visualizer    #edit your own path
 roscd
 cd ..
@@ -73,7 +72,13 @@ valid on KITTI dataset video: ```04, 06, 07, 10```
 test on KITTI dataset video: ```04, 05, 07, 09, 10```  
 test on Self-made dataset video: ```ntu, room, campus1, campus2```  
 
-## III.Result
+## III.Our dataset
+```ntu, campus1, campus2``` are recorded by iPhone8 with riding bicycle  
+```room``` is recorded by iPhone8 through walking  
+All videos are processed by Blender to 1241x376 resolution png sequences  
+<img src="https://github.com/Shining-Zone/VFX_Final/blob/master/doc/blender_setting.png" width="620">
+
+## IV.Result
 #### 0. Learning Curve
 <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_0_100.png" width="420"><img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_100_200.png" width="420">
 <img src="https://github.com/Shining-Zone/VFX_Final/blob/master/record/lc_200_250.png" width="320">
@@ -99,7 +104,7 @@ paper result
 #### 3. Rviz visualizing demo
 video
 
-## IV.Reference
+## V.Reference
 [1] S. Wang, R. Clark, H. Wen and N. Trigoni, "DeepVO: Towards end-to-end visual odometry with deep Recurrent Convolutional Neural Networks," 2017 IEEE International Conference on Robotics and Automation (ICRA), Singapore, 2017, pp. 2043-2050.  
 [2] https://github.com/ChiWeiHsiao/DeepVO-pytorch  
 
